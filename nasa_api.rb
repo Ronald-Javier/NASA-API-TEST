@@ -36,8 +36,8 @@ def buid_web_page(step1)
     
             f.puts "<h1 class='text-light'>FOTOS DE LA NASA!</h1>
             <ul>"
-            photo_src.each do |i|
-            f.puts "<li><img src='#{i}' width='900' alt='Nasa Photos'></li>"
+            photo_src.each do |img|
+            f.puts "<li><img src='#{img}' width='900' alt='Nasa Photos'></li>"
             f.puts '</ul><br>'
         end
 
@@ -45,3 +45,27 @@ def buid_web_page(step1)
     end
 end
 end
+
+def photos_count (step2)             
+    info = {}          
+    info_camera = []
+    step2['photos'].each do |cam|
+        info = cam
+        info_camera.push(info['camera'])
+    end
+    
+    total = Hash.new(0)
+    info_camera.each do |n|
+        total[n] += 1
+    end
+    total.each do |num, name|
+        puts "Hay #{num} fotos de la camara #{name['name']}"
+    end
+end
+
+
+photos_count(request('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=10', 'bkghKA5LCY3f6sDu98THinoxnmueTzk0f53xZ5Uy'))
+
+
+buid_web_page(request('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=10', 'bkghKA5LCY3f6sDu98THinoxnmueTzk0f53xZ5Uy'))
+
