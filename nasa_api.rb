@@ -15,14 +15,14 @@ def request(url, api_key)
 end
 
 
-def buid_web_page(step1)
+def buid_web_page(step_one)
 
-    clean_data = step1['photos']    
+    clean_data = step_one['photos']    
     photo_info = {}                     
     photo_src = []                      
     
-    clean_data.each do |i|              
-        photo_info = i
+    clean_data.each do |data|              
+        photo_info = data
         photo_src.push(photo_info['img_src']) 
     end
 
@@ -46,19 +46,19 @@ def buid_web_page(step1)
 end
 end
 
-def photos_count (step2)             
+def photos_count (step_two)             
     info = {}          
-    info_camera = []
-    step2['photos'].each do |cam|
-        info = cam
-        info_camera.push(info['camera'])
+    camara_name = []
+    step_two['photos'].each do |i|
+        info = i
+        camara_name.push(info['camera'])
     end
     
     total = Hash.new(0)
-    info_camera.each do |n|
-        total[n] += 1
+    camara_name.each do |num|
+        total[num] += 1
     end
-    total.each do |num, name|
+    total.each do |name, num|
         puts "Hay #{num} fotos de la camara #{name['name']}"
     end
 end
