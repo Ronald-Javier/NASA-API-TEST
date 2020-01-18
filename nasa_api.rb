@@ -49,8 +49,8 @@ end
 def photos_count (step_two)             
     info = {}          
     camara_name = []
-    step_two['photos'].each do |i|
-        info = i
+    step_two['photos'].each do |cam|
+        info = cam
         camara_name.push(info['camera'])
     end
     
